@@ -1,0 +1,24 @@
+<div th:fragment="navbar">
+  <nav class="navbar navbar-expand-lg bg-white sticky-top">
+    <div class="container kontainer">
+      <div class="d-flex align-items-center">
+        <img src="{{ asset('img/mini-logo.svg') }}" style="height: 40px; width: 60px">
+        <p class="navbar-brand AZ">AthleteZone</p>
+      </div>
+      <div class="d-flex">
+        <div>
+          <form class="d-flex position-relative" role="search">
+            <input class="form-control search-input" type="search" placeholder="Search.." aria-label="Search"/>
+            <img src="{{ asset('img/Search-icon.svg') }}" alt="Search Icon" class="search-icon" />
+          </form>
+        </div>
+        <div class="ms-5">
+          <a href="/Ucart"><img src="{{ asset('img/Shopping Chart.svg') }}" style="height: 40px; width: 37px;"></a>
+        </div>
+        <div class="ms-5">
+          <img src="{{ asset('img/User.svg') }}" style="height: 45px; width: 43px;">
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
