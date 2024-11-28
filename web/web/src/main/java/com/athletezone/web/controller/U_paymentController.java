@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class A_homepageController {
-    @GetMapping("A_homepage")
-    public String homepage() {
-        return "A_homepage";
+public class U_paymentController {
+    @GetMapping("U_payment")
+    public String payment() {
+        return "U_payment";
     }
 }

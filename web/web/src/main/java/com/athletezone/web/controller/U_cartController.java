@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class U_cart {
+public class U_cartController {
     @GetMapping("U_cart")
     public String cart() {
         return "U_cart";
