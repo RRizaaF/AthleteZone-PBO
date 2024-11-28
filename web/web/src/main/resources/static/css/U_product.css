@@ -54,8 +54,19 @@
     margin-top: 6px;
 }
 
-.btn {
+.button-addnfav .btn {
     width: 100%;
     margin-top: 6px;
-    border-radius: 30px;
+    border-radius: 50px;
+    color: #FFF;
+    background: #0b4575;
+    border: none;
+    height: 60px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.button-addnfav .btn:hover {
+    background-color: #668eb2;
+    color:black;
 }
