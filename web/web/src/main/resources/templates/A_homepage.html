@@ -20,12 +20,12 @@
 </head>
 <body>
 <!-- Navbar -->
+<div th:include="~{/fragments/U_navbar.html}"></div>
 
 <!-- Dashboard Section -->
 <section id="dashboard">
   <h1 class="dashboard-title">Dashboard</h1>
   <div id="sections" class="row sections mt-2 ms-3 hidden">
-    <!-- Contoh struktur -->
     <div class="col-md-2 section">
       <h2>Order</h2>
       <ul>
@@ -34,7 +34,34 @@
         <li>Returns & Refunds</li>
       </ul>
     </div>
-    <!-- Tambahkan bagian lain sesuai kebutuhan -->
+    <div class="col-md-2 section">
+      <h2>Library</h2>
+      <ul>
+        <li>Item Library</li>
+        <li>Categories</li>
+      </ul>
+    </div>
+    <div class="col-md-2 section">
+      <h2>Reports</h2>
+      <ul>
+        <li>Sales</li>
+        <li>Transaction</li>
+      </ul>
+    </div>
+    <div class="col-md-2 section">
+      <h2>Reviews</h2>
+      <ul>
+        <li>Product Reviews</li>
+        <li>Feedback</li>
+      </ul>
+    </div>
+    <div class="col-md-2 section">
+      <h2>User</h2>
+      <ul>
+        <li>Staff Management</li>
+        <li>Customer List</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -55,7 +82,6 @@
   <div class="hero-content">
     <h1 class="hero-title">Move Your Body, Unlock Your Potential!</h1>
     <p class="hero-subtitle">Start your journey with AthleteZone</p>
-<!-- cek href ini, masih ke U_shop-->
     <a th:href="@{/U_shop}" class="btn btn-primary">Shop</a>
   </div>
 </section>
@@ -75,10 +101,10 @@
       </div>
     </div>
     <div class="row text-center">
-      <!-- Kartu Produk Pertama -->
+      {{-- Kartu Produk Pertama --}}
       <div class="col-md-4">
         <div class="card-fitur d-flex justify-content-center align-items-center">
-          <img th:src="@{/img/sepatu3.svg}" alt="">
+          <img class="sepatu1" th:src="@{/img/sepatu3.svg}" alt="">
         </div>
         <div class="info-card text-start mt-4">
           <h4>Nike Air Max 1 Essential Premium</h4>
@@ -86,8 +112,52 @@
           <p class="hargaSepatu">Rp 1,749,000</p>
         </div>
       </div>
-      <!-- Tambahkan kartu lain sesuai kebutuhan -->
+
+      {{-- Kartu Produk Kedua --}}
+      <div class="col-md-4">
+        <div class="card-fitur d-flex justify-content-center align-items-center">
+          <img th:src="@{/img/sepatu2.svg}" alt="">
+        </div>
+        <div class="info-card text-start mt-4">
+          <h4>G.T Hustle Academy EP</h4>
+          <p class="jenisSepatu">Women’s Shoes</p>
+          <p class="hargaSepatu">Rp 2,349,000</p>
+        </div>
+      </div>
+
+      {{-- Kartu Produk Ketiga --}}
+      <div class="col-md-4">
+        <div class="card-fitur d-flex justify-content-center align-items-center">
+          <img th:src="@{/img/sepatu1.svg}" alt="">
+        </div>
+        <div class="info-card text-start mt-4">
+          <h4>Nike Air Max 1 Essential Voizer</h4>
+          <p class="jenisSepatu">Men’s Shoes</p>
+          <p class="hargaSepatu">Rp 2,800,000</p>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- Dont Miss Section -->
+<section id="herobaru" class="text-center mt-2">
+  <h5 class="dontmiss-heading">Don't Miss</h5>
+  <div class="hero-image-wrapper position-relative">
+    <img th:src="@{/img/dontmiss.svg}"  alt="hero">
+    <div class="overlay position-absolute top-0 bottom-0 start-0 end-0 w-100 h-100">
+      <div class="isi position-absolute top-50 start-50 translate-middle">
+        <form id="dontMissUploadForm" enctype="multipart/form-data" style="display: none;">
+          <input type="file" id="dontMissPhotoInput" name="photo" accept="image/*">
+        </form>
+        <a href="#" class="btn btn-hero" id="dontMissUploadPhotoBtn">Upload photo</a>
+        <a href="#" class="btn btn-hero" id="dontMissRemovePhotoBtn">Remove photo</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-title">Equip Every Step Toward Success!</h1>
+    <a href="#" class="btn btn-primary">Shop</a>
   </div>
 </section>
 
@@ -98,34 +168,55 @@
       <div class="row text-white py-5">
         <div class="col-md-4">
           <div class="d-flex align-items-center mb-3">
-            <img th:src="@{/img/mini-logo.svg}" alt="Logo" class="me-2" />
+            <img th:src="@{/img/mini-logo.svg}"  alt="Logo" class="me-2" />
             <span>AthleteZone</span>
           </div>
           <p>Hak Cipta © 2024 AthleteZone. Semua hak dilindungi</p>
           <div class="social-links d-flex">
             <div class="circle-icon position-relative me-2">
-              <a href="https://instagram.com"><img th:src="@{/img/Instagram.svg}" alt="Instagram" class="position-absolute top-50 start-50 translate-middle" /></a>
+              <a href="https://instagram.com"><img th:src="@{/img/Instagram.svg}"  alt="Instagram" class="position-absolute top-50 start-50 translate-middle" /></a>
             </div>
-            <!-- Tambahkan link sosial lain -->
+            <div class="circle-icon position-relative me-2">
+              <a href="https://google.com"><img th:src="@{/img/Google.svg}" alt="Google" class="position-absolute top-50 start-50 translate-middle" /></a>
+            </div>
+            <div class="circle-icon position-relative me-2">
+              <a href="https://linkedin.com"><img th:src="@{/img/Linkedin.svg}" alt="LinkedIn" class="position-absolute top-50 start-50 translate-middle" /></a>
+            </div>
+            <div class="circle-icon position-relative">
+              <a href="https://youtube.com"><img th:src="@{/img/Youtube.svg}" alt="YouTube" class="position-absolute top-50 start-50 translate-middle" /></a>
+            </div>
           </div>
         </div>
         <div class="col-md-3">
           <h5>Navigasi</h5>
           <ul class="list-navigasi">
             <li><a href="#">Beranda</a></li>
-            <!-- Tambahkan menu lainnya -->
+            <li><a href="#">Fitur</a></li>
+            <li><a href="#">Pertanyaan</a></li>
+            <li><a href="#">Tentang Kami</a></li>
           </ul>
         </div>
-        <!-- Kontak -->
         <div class="col-md-4">
           <h5>Kontak</h5>
           <ul class="list-kontak">
             <div class="d-flex align-items-center">
               <img th:src="@{/img/TelephoneFill.svg}" alt="Logo" class="me-2" />
-              <li>+62 813-5800-8183</li>
+              <li><i class="fa fa-phone"></i> +62 813-5800-8183</li>
             </div>
-            <!-- Tambahkan kontak lainnya -->
+            <div class="d-flex align-items-center">
+              <img th:src="@{/img/EnvelopeFill.svg}" alt="Logo" class="me-2" />
+              <li><i class="fa fa-envelope"></i> AthleteZone@gmail.com</li>
+            </div>
+            <div class="d-flex align-items-center">
+              <img th:src="@{/img/GeoAltFill.svg}" alt="Logo" class="me-2" />
+              <li><i class="fa fa-map-marker"></i> Telkom University, Kabupaten Bandung, Jawa Barat 40257</li>
+            </div>
           </ul>
+        </div>
+        <div class="col-md-1">
+          <div class="circle-scroll position-relative">
+            <a href="#"><img th:src="@{/img/ChevronUp.svg}" alt="chevronup" class="position-absolute top-50 start-50 translate-middle" /></a>
+          </div>
         </div>
       </div>
     </div>
