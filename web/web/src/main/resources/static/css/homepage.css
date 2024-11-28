@@ -4,7 +4,6 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
-
 .image-cart {
     margin-right: 15px;
 }
@@ -131,7 +130,7 @@ body {
     letter-spacing: 0.48px;
 }
 
-.btn-hero1 {
+.btn-heroUser {
     display: inline-flex; /* Ini memastikan tombol terpusat */
     align-items: center;
     justify-content: center;
@@ -149,7 +148,7 @@ body {
     cursor: pointer; /* Tambahan agar tombol terlihat interaktif */
 }
 
-.btn-hero1:hover {
+.btn-heroUser:hover {
     background-color: #668eb2;
 }
 
