@@ -130,7 +130,7 @@ body {
     letter-spacing: 0.48px;
 }
 
-.btn-heroUser {
+#hero .btn-heroUser {
     display: inline-flex; /* Ini memastikan tombol terpusat */
     align-items: center;
     justify-content: center;
@@ -148,7 +148,7 @@ body {
     cursor: pointer; /* Tambahan agar tombol terlihat interaktif */
 }
 
-.btn-heroUser:hover {
+hero .btn-heroUser:hover {
     background-color: #668eb2;
 }
 
@@ -258,7 +258,7 @@ body {
 }
 
 
-h5 {
+#NewArrival h5 {
     color: #000000;
     font-size: 25px;
     font-weight: 700;
@@ -266,9 +266,9 @@ h5 {
     margin-bottom: 50px;
 }
 
-h4 {
+#NewArrival h4 {
     color: #000;
-    font-family: Poppins;
+    font-family: Poppins, serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
