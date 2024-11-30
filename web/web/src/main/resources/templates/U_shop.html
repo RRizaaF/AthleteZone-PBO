@@ -28,86 +28,15 @@
         <!-- Konten Sepatu -->
         <div class="content-category shoes">
             <div class="row g-0 mb-2 pt-4" style="padding-left: 350px; width: 99vw; height: fit-content">
-                <div class="col-md-4">
+                <div class="col-md-4" th:each="product : ${products}"
+                    th:if="${product.category} == 'shoes'">
                     <div class="card" style="width: 20rem;">
-                        <a href="/Uproduct" style="text-decoration: none; color: black">
-                            <img src="img/sepatu1.svg" class="card-img-top">
+                        <a th:href="@{'/Uproduct/' + ${product.id}}" style="text-decoration: none; color: black">
+                            <img th:src="@{${product.photoUrl}}" class="card-img-top">
                             <div class="card-body">
-                                <p class="card-text">Nike Air Max 1 Essential Premium</p>
-                                <p style="color: #6C7581">Men's Shoes</p>
-                                <p>Rp1,749,000</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card" style="width: 20rem;">
-                        <a href="" style="text-decoration: none; color: black">
-                            <img src="img/sepatu2.svg" class="card-img-top">
-                            <div class="card-body">
-                                <p class="card-text">Nike Air Max 1 Essential Premium</p>
-                                <p style="color: #6C7581">Men's Shoes</p>
-                                <p>Rp1,749,000</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card" style="width: 20rem;">
-                        <a href="" style="text-decoration: none; color: black">
-                            <img src="img/sepatu3.svg" class="card-img-top">
-                            <div class="card-body">
-                                <p class="card-text">Nike Air Max 1 Essential Premium</p>
-                                <p style="color: #6C7581">Men's Shoes</p>
-                                <p>Rp1,749,000</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card" style="width:20rem;">
-                        <a href="" style="text-decoration: none; color: black">
-                            <img src="img/sepatu1.svg" class="card-img-top">
-                            <div class="card-body">
-                                <p class="card-text">Nike Air Max 1 Essential Premium</p>
-                                <p style="color: #6C7581">Men's Shoes</p>
-                                <p>Rp1,749,000</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card" style="width:20rem;">
-                        <a href="" style="text-decoration: none; color: black">
-                            <img src="img/sepatu2.svg" class="card-img-top">
-                            <div class="card-body">
-                                <p class="card-text">Nike Air Max 1 Essential Premium</p>
-                                <p style="color: #6C7581">Men's Shoes</p>
-                                <p>Rp1,749,000</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card" style="width:20rem;">
-                        <a href="" style="text-decoration: none; color: black">
-                            <img src="img/sepatu3.svg" class="card-img-top">
-                            <div class="card-body">
-                                <p class="card-text">Nike Air Max 1 Essential Premium</p>
-                                <p style="color: #6C7581">Men's Shoes</p>
-                                <p>Rp1,749,000</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card" style="width:20rem;">
-                        <a href="" style="text-decoration: none; color: black">
-                            <img src="img/sepatu1.svg" class="card-img-top">
-                            <div class="card-body">
-                                <p class="card-text">Nike Air Max 1 Essential Premium</p>
-                                <p style="color: #6C7581">Men's Shoes</p>
-                                <p>Rp1,749,000</p>
+                                <p th:text="${product.name}" class="card-text"></p>
+                                <p style="color: #6C7581" th:text="${product.category}"></p>
+                                <p th:text="'Rp ' + ${product.price}"></p>
                             </div>
                         </a>
                     </div>
