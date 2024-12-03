@@ -23,47 +23,105 @@
 <div th:replace="fragments/U_navbar"></div>
 
 <!-- Isi -->
-<div class="container mt-5">
+<div class="container-fluid h-100 d-flex justify-content-center align-items-center mt-5">
     <div class="row">
         <!-- Left Section -->
-        <div class="col-lg-8">
-            <h2>Delivery</h2>
-            <p>Enter your name and address:</p>
+        <div class="col-lg-7">
+            <h4 class="mt-3">Delivery</h4>
+            <p class="mt-5">Enter your name and address:</p>
+            <p class="penjelasan">If you have a promo code, you will be able to input it after filling in your contact details.</p>
             <form>
-                <div class="mb-3">
-                    <label for="firstName" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                <!-- Bagian Delivery -->
+                <div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="address" placeholder="Start typing a street address or postcode">
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="lastName" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                <!-- Bagian Contact -->
+                <div>
+                    <h5 class="mt-5 mb-4">What's your contact information?</h5>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" id="email" placeholder="Email">
+                        <small class="text-muted ms-3">A confirmation email will be sent after checkout.</small>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="phone" placeholder="Phone Number">
+                        <small class="text-muted ms-3">A carrier might contact you to confirm delivery.</small>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="address" class="form-label">Address</label>
-                    <input type="text" class="form-control" id="address" placeholder="Start typing a street address or postcode">
-                </div>
-                <small class="text-muted">We do not ship to P.O. boxes</small>
-                <p class="mt-2"><a href="#" class="text-primary">Enter address manually</a></p>
+                <!-- Bagian Shipping -->
+                <div>
+                    <div class="d-flex justify-content-between border-top pt-3 mb-3 mt-5">
+                        <h4>Shipping</h4>
+                    </div>
+                    <h6>When would you like to get your order?</h6>
 
-                <h5>What's your contact information?</h5>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email">
-                    <small class="text-muted">A confirmation email will be sent after checkout.</small>
+                    <!-- Shipping Options -->
+                    <div class="mb-3 mt-3">
+                        <div class="shipping-option border rounded p-3 mb-3 d-flex justify-content-between align-items-center" style="cursor: pointer;">
+                            <div>
+                                <p class="mb-0">Arrives Mon, 16 Dec - Fri, 20 Dec</p>
+                            </div>
+                            <div>
+                                <span>Free</span>
+                            </div>
+                        </div>
+
+                        <div class="shipping-option border rounded p-3 d-flex justify-content-between align-items-center" style="cursor: pointer;">
+                            <div>
+                                <p class="mb-0">Arrives Thu, 12 Dec - Mon, 16 Dec</p>
+                            </div>
+                            <div>
+                                <span>Rp 350.000,00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">This is an international shipment requiring customs clearance</small>
                 </div>
-                <div class="mb-3">
-                    <label for="phone" class="form-label">Phone Number</label>
-                    <input type="text" class="form-control" id="phone" placeholder="Phone Number">
-                    <small class="text-muted">A carrier might contact you to confirm delivery.</small>
+                <!-- Bagian Shipping -->
+                <div>
+                    <div class="d-flex justify-content-between border-top pt-3 mb-3 mt-5">
+                        <h4>Payment</h4>
+                    </div>
+                    <h6>How would you like to pay?</h6>
+
+                    <!-- Shipping Options -->
+                    <div class="mb-3 mt-3">
+                        <div class="shipping-option border rounded p-3 mb-3 d-flex justify-content-between align-items-center" style="cursor: pointer;">
+                            <div>
+                                <p class="mb-0">Arrives Mon, 16 Dec - Fri, 20 Dec</p>
+                            </div>
+                            <div>
+                                <span>Free</span>
+                            </div>
+                        </div>
+
+                        <div class="shipping-option border rounded p-3 d-flex justify-content-between align-items-center" style="cursor: pointer;">
+                            <div>
+                                <p class="mb-0">Arrives Thu, 12 Dec - Mon, 16 Dec</p>
+                            </div>
+                            <div>
+                                <span>Rp 350.000,00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">This is an international shipment requiring customs clearance</small>
                 </div>
+
             </form>
         </div>
 
         <!-- Right Section -->
-        <div class="col-lg-4">
+        <div class="col-lg-5">
             <div class="order-summary">
-                <h5>Order Summary</h5>
-                <div class="d-flex justify-content-between">
+                <h4>Order Summary</h4>
+                <div class="d-flex justify-content-between mt-4">
                     <p>Subtotal</p>
                     <p>Rp 3.017.000,00</p>
                 </div>
@@ -75,12 +133,11 @@
                     <p>Delivery/Shipping</p>
                     <p>Free</p>
                 </div>
-                <p class="free-shipping">You qualify for free shipping!</p>
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between border-top border-bottom pt-3 pb-3">
                     <h5>Total</h5>
                     <h5>Rp 4.450.756,00</h5>
                 </div>
-                <p class="text-muted">Arrives Mon, 16 Dec - Fri, 20 Dec</p>
+                <p class="text-muted mt-2">Arrives Mon, 16 Dec - Fri, 20 Dec</p>
 
                 <!-- Products -->
                 <div class="d-flex align-items-center mb-3">

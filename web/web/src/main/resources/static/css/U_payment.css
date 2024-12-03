@@ -4,7 +4,7 @@ body {
 }
 
 .order-summary {
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
 }
@@ -15,4 +15,18 @@ body {
 .free-shipping {
     color: green;
     font-weight: bold;
+}
+
+.penjelasan {
+    width: 450px;
+}
+
+.form-control {
+    width: 470px;
+    height: 55px;
+}
+
+.shipping-option {
+    height: 70px ;
+    border-radius: 50px;
 }
