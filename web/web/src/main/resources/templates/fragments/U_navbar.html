@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,25 +19,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap" rel="stylesheet">
 </head>
 <body>
-<!--Navbar-->
 <nav class="navbar navbar-expand-lg bg-white sticky-top">
   <div class="container kontainer">
     <div class="d-flex align-items-center">
-      <img th:src="@{/img/mini-logo.svg}" style="height: 40px; width: 60px">
+      <img src="img/mini-logo.svg" style="height: 40px; width: 60px">
       <p class="navbar-brand AZ">AthleteZone</p>
     </div>
     <div class="d-flex">
       <div>
         <form class="d-flex position-relative" role="search">
           <input class="form-control search-input" type="search" placeholder="Search.." aria-label="Search"/>
-          <img th:src="@{/img/Search-icon.svg}" alt="Search Icon" class="search-icon" />
+          <img src="img/Search-icon.svg" alt="Search Icon" class="search-icon" />
         </form>
       </div>
       <div class="ms-5">
-        <a href="/Ucart"><img th:src="@{/img/Shopping Chart.svg}" style="height: 40px; width: 37px;"></a>
+        <a href="/Ucart"><img src="img/Shopping Chart.svg" style="height: 40px; width: 37px;"></a>
       </div>
       <div class="ms-5">
-        <img th:src="@{/img/User.svg}" style="height: 45px; width: 43px;">
+        <img src="img/User.svg" style="height: 45px; width: 43px;">
       </div>
     </div>
   </div>
