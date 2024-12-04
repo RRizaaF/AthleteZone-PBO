@@ -30,3 +30,9 @@ body {
     height: 70px ;
     border-radius: 50px;
 }
+
+.shipping-option.active {
+    background-color: #dddddd;
+    border: 2px solid #007bff; /* Opsional: Untuk memberi batas tegas */
+}
+
