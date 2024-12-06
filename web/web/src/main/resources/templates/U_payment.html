@@ -12,6 +12,9 @@
     <!-- Link CSS Lokal -->
     <link rel="stylesheet" th:href="@{/css/U_payment.css}">
 
+    <!-- Link JQuery  -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -82,38 +85,97 @@
                             </div>
                         </div>
                     </div>
-                    <small class="text-muted">This is an international shipment requiring customs clearance</small>
+                    <small class="text-muted ms-1">This is an international shipment requiring customs clearance</small>
                 </div>
-                <!-- Bagian Shipping -->
+                <!-- Container Metode Pembayaran -->
                 <div>
                     <div class="d-flex justify-content-between border-top pt-3 mb-3 mt-5">
                         <h4>Payment</h4>
                     </div>
                     <h6>How would you like to pay?</h6>
 
-                    <!-- Shipping Options -->
+                    <!-- Pilihan Metode Pembayaran -->
                     <div class="mb-3 mt-3">
-                        <div class="shipping-option border rounded p-3 mb-3 d-flex justify-content-between align-items-center" style="cursor: pointer;">
+                        <!-- Mastercard -->
+                        <div id="mastercardOption" class="shipping-option border rounded p-3 mb-3 d-flex justify-content-between align-items-center" style="cursor: pointer;">
                             <div>
-                                <p class="mb-0">Arrives Mon, 16 Dec - Fri, 20 Dec</p>
+                                <img src="img/mastercard.svg" alt="Mastercard" style="width: 60px; height: 60px;">
                             </div>
                             <div>
                                 <span>Free</span>
                             </div>
                         </div>
 
-                        <div class="shipping-option border rounded p-3 d-flex justify-content-between align-items-center" style="cursor: pointer;">
+                        <!-- Transfer -->
+                        <div id="transferOption" class="shipping-option border rounded p-3 d-flex justify-content-between align-items-center" style="cursor: pointer;">
                             <div>
-                                <p class="mb-0">Arrives Thu, 12 Dec - Mon, 16 Dec</p>
+                                <p class="mb-0">Transfer</p>
                             </div>
                             <div>
-                                <span>Rp 350.000,00</span>
+                                <span>Free</span>
+                            </div>
+                        </div>
+
+                        <!-- Dana -->
+                        <div id="danaOption" class="shipping-option border rounded mt-3 p-3 d-flex justify-content-between align-items-center" style="cursor: pointer;">
+                            <div>
+                                <img src="img/dana.svg" alt="Dana" style="width: 60px; height: 60px;">
+                            </div>
+                            <div>
+                                <span>Free</span>
                             </div>
                         </div>
                     </div>
                     <small class="text-muted">This is an international shipment requiring customs clearance</small>
                 </div>
 
+                <!-- Formulir Mastercard -->
+                <div id="mastercardForm" style="display: block; margin-top: 20px;">
+                    <h6>Enter your Mastercard details:</h6>
+                    <div>
+                        <div class="mb-3 mt-3">
+                            <input type="text" class="form-control" id="cardName" placeholder="Name on card">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="cardNumber" placeholder="Card number">
+                        </div>
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="cvv" placeholder="CVV">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulir Transfer -->
+                <div id="transferForm" style="display: none; margin-top: 20px;">
+                    <h6>Enter your Transfer details:</h6>
+                    <div>
+                        <div class="mb-3">
+                            <label for="bankAccount" class="form-label">Bank Account Number</label>
+                            <input type="text" class="form-control" id="bankAccount" placeholder="Enter your bank account number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="transferReference" class="form-label">Reference Number</label>
+                            <input type="text" class="form-control" id="transferReference" placeholder="Enter your transfer reference number">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulir Dana -->
+                <div id="danaForm" style="display: none; margin-top: 20px;">
+                    <h6>Enter your Dana payment details:</h6>
+                    <div>
+                        <div class="mb-3">
+                            <label for="danaPhone" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="danaPhone" placeholder="Enter your phone number">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-secondary mt-4 mb-3 form-control">Place Order</button>
             </form>
         </div>
 
@@ -162,7 +224,7 @@
         </div>
     </div>
 </div>
-
+<script th:src="@{/js/U_payment.js}"></script>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
