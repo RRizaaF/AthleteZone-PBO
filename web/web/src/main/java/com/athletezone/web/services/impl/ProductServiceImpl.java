@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,7 +23,7 @@ import java.util.stream.Collectors;
 @Transactional
 public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
-    private static final String UPLOAD_DIR = "web/storage/";
+    private static final String UPLOAD_DIR = "web/web/src/main/resources/static/storage/";
 
     @Autowired
     public ProductServiceImpl(ProductRepository productRepository) {
@@ -54,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
         // Simpan file ke direktori
         Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
         // Return path relatif
-        return filePath.toString();
+        return "storage" + File.separator + fileName;
     }
 
     @Override

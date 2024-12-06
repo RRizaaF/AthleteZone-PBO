@@ -32,7 +32,7 @@
                     th:if="${product.category} == 'shoes'">
                     <div class="card" style="width: 20rem;">
                         <a th:href="@{'/Uproduct/' + ${product.id}}" style="text-decoration: none; color: black">
-                            <img th:src="@{${product.photoUrl}}" class="card-img-top">
+                            <img th:src="${product.photoUrl}" class="card-img-top">
                             <div class="card-body">
                                 <p th:text="${product.name}" class="card-text"></p>
                                 <p style="color: #6C7581" th:text="${product.category}"></p>
@@ -51,7 +51,7 @@
                      th:if="${product.category} == 'jerseys'">
                     <div class="card" style="width: 20rem;">
                         <a th:href="@{'/Uproduct/' + ${product.id}}" style="text-decoration: none; color: black">
-                            <img th:src="@{${product.photoUrl}}" class="card-img-top">
+                            <img th:src="${product.photoUrl}" class="card-img-top">
                             <div class="card-body">
                                 <p th:text="${product.name}" class="card-text"></p>
                                 <p style="color: #6C7581" th:text="${product.category}"></p>
