@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 
 @Data
 @NoArgsConstructor
@@ -16,4 +19,5 @@ public class ProductDTO {
     private double price;
     private String photoUrl;
     private String category;
+    private int stock;
 }
