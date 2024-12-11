@@ -40,6 +40,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public ProductDTO getProductById(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Product not found"));;
+        return convertToDTO(product);
+    }
+
+    @Override
     public String saveFile(MultipartFile file) throws IOException {
         Path uploadPath = Paths.get(UPLOAD_DIR);
 
@@ -62,6 +69,23 @@ public class ProductServiceImpl implements ProductService {
     // Menyimpan produk baru
     public Product saveProduct(Product product) {
         return productRepository.save(product);
+    }
+
+    @Override
+    public void editProductById(Long id, ProductDTO productDTO) throws IOException {
+        // Cari produk berdasarkan ID
+        Product Product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        // Update data produk
+        Product.setName(productDTO.getName());
+        Product.setBrand(productDTO.getBrand());
+        Product.setCategory(productDTO.getCategory());
+        Product.setPrice(productDTO.getPrice());
+        Product.setStock(productDTO.getStock());
+
+        // Simpan perubahan
+        productRepository.save(Product);
     }
 
     @Override

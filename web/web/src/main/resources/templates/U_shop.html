@@ -29,13 +29,13 @@
         <div class="content-category shoes">
             <div class="row g-0 mb-2 pt-4" style="padding-left: 350px; width: 99vw; height: fit-content">
                 <div class="col-md-4" th:each="product : ${products}"
-                    th:if="${product.category} == 'shoes'">
+                     th:if="${product.category} == 'shoes'">
                     <div class="card" style="width: 20rem;">
                         <a th:href="@{'/Uproduct/' + ${product.id}}" style="text-decoration: none; color: black">
                             <img th:src="${product.photoUrl}" class="card-img-top">
                             <div class="card-body">
                                 <p th:text="${product.name}" class="card-text"></p>
-                                <p style="color: #6C7581" th:text="${product.category}"></p>
+                                <p style="color: #6C7581" th:text="${product.brand}"></p>
                                 <p th:text="'Rp ' + ${product.price}"></p>
                             </div>
                         </a>
@@ -54,7 +54,7 @@
                             <img th:src="${product.photoUrl}" class="card-img-top">
                             <div class="card-body">
                                 <p th:text="${product.name}" class="card-text"></p>
-                                <p style="color: #6C7581" th:text="${product.category}"></p>
+                                <p style="color: #6C7581" th:text="${product.brand}"></p>
                                 <p th:text="'Rp ' + ${product.price}"></p>
                             </div>
                         </a>
@@ -73,7 +73,7 @@
                             <img th:src="@{${product.photoUrl}}" class="card-img-top">
                             <div class="card-body">
                                 <p th:text="${product.name}" class="card-text"></p>
-                                <p style="color: #6C7581" th:text="${product.category}"></p>
+                                <p style="color: #6C7581" th:text="${product.brand}"></p>
                                 <p th:text="'Rp ' + ${product.price}"></p>
                             </div>
                         </a>
@@ -92,7 +92,7 @@
                             <img th:src="@{${product.photoUrl}}" class="card-img-top">
                             <div class="card-body">
                                 <p th:text="${product.name}" class="card-text"></p>
-                                <p style="color: #6C7581" th:text="${product.category}"></p>
+                                <p style="color: #6C7581" th:text="${product.brand}"></p>
                                 <p th:text="'Rp ' + ${product.price}"></p>
                             </div>
                         </a>
@@ -111,7 +111,7 @@
                             <img th:src="@{${product.photoUrl}}" class="card-img-top">
                             <div class="card-body">
                                 <p th:text="${product.name}" class="card-text"></p>
-                                <p style="color: #6C7581" th:text="${product.category}"></p>
+                                <p style="color: #6C7581" th:text="${product.brand}"></p>
                                 <p th:text="'Rp ' + ${product.price}"></p>
                             </div>
                         </a>
