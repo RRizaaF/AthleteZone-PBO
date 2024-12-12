@@ -19,36 +19,71 @@
   <link href="https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container d-flex justify-content-center align-items-center min-vh-100">
-    <div class="row rounded-5 p-3 bg-white">
-      <div class="col-md-6 my-auto p-5">
-        <h3 class="judul-login">Welcome Back</h3>
-        <p style="color: #00000081;">Not registered yet? <a href="/register" style="text-decoration: none; color: black;">Sign up</a></p>
-        <form method="POST">
-          <div class="input-email-register mb-2">
-            <label for="email" class="ms-1" style="color: #00000081;">Email</label>
-            <input type="text" id="email" name="email" class="form-control input-login" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
-          </div>
-          <div class="input-password-register mb-2">
-            <label for="password" class="ms-1" style="color: #00000081;">Password</label>
-            <input type="password" id="password" name="password" class="form-control input-login" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
-          </div>
-          <button type="submit" class="btn btn-signIn mt-3">Sign In</button>
-        </form>
-      </div>
-
-      <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #0b4575;">
-        <div class="featured-image mb-3">
-          <img src="img/mini-logo.svg" class="img-fluid" style="width: 200px;">
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="row rounded-5 p-3 bg-white">
+    <div class="col-md-6 my-auto p-5">
+      <h3 class="judul-login">Welcome Back</h3>
+      <p style="color: #00000081;">Not registered yet? <a href="/register" style="text-decoration: none; color: black;">Sign up</a></p>
+      <form method="POST" id="loginForm">
+        <div class="input-email-register mb-2">
+          <label for="email" class="ms-1" style="color: #00000081;">Email</label>
+          <input type="text" id="email" name="email" class="form-control input-login" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
         </div>
-        <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;">Be Verified</p>
-        <small class="text-white text-wrap text-center" style="width: 17rem; font-family: 'Courier New', Courier, monospace;">Join experienced Designers on this platform.</small>
+        <div class="input-password-register mb-2">
+          <label for="password" class="ms-1" style="color: #00000081;">Password</label>
+          <input type="password" id="password" name="password" class="form-control input-login" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+        </div>
+        <button type="submit" class="btn btn-signIn mt-3">Sign In</button>
+      </form>
+    </div>
+
+    <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #0b4575;">
+      <div class="featured-image mb-3">
+        <img src="img/mini-logo.svg" class="img-fluid" style="width: 200px;">
       </div>
+      <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;">Be Verified</p>
+      <small class="text-white text-wrap text-center" style="width: 17rem; font-family: 'Courier New', Courier, monospace;">Join experienced Designers on this platform.</small>
     </div>
   </div>
-  <div>
-    <br>
-    <br>
-  </div>
+</div>
+<div>
+  <br>
+  <br>
+</div>
+<script>
+  document.querySelector('.btn-signIn').addEventListener('click', function (event) {
+    event.preventDefault(); // Mencegah reload halaman
+
+    const formData = {
+      email: document.querySelector('[name="email"]').value,
+      password: document.querySelector('[name="password"]').value,
+    };
+
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+            .then((response) => {
+              if (!response.ok) {
+                return response.text().then((text) => {
+                  throw new Error(text);
+                });
+              }
+              return response.text();
+            })
+            .then((message) => {
+              alert(message);
+              window.location.href = '/U_homepage'; // Redirect ke halaman U_homepage
+            })
+            .catch((error) => {
+              alert(`Error: ${error.message}`);
+            });
+  });
+</script>
+
+
 </body>
 </html>

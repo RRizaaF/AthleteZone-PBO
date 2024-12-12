@@ -32,20 +32,20 @@
 
       <h3 class="judul-register">Get Started</h3>
       <p class="ms-1" style="color: #00000081;">Already have an account? <a href="/login" style="text-decoration: none; color: black;">Sign in</a></p>
-      <form action="">
+      <form action="/register" method="POST" id="registerForm">
         <div class="input-username-register mb-2">
           <label class="ms-1" style="color: #00000081;">Username</label>
-          <input type="text" class="form-control input-register" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+          <input type="text" class="form-control input-register" name="username" placeholder="Username" required>
         </div>
         <div class="input-email-register mb-2">
           <label class="ms-1" style="color: #00000081;">Email</label>
-          <input type="text" class="form-control input-register" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+          <input type="email" class="form-control input-register" name="email" placeholder="Email" required>
         </div>
         <div class="input-password-register mb-2">
           <label class="ms-1" style="color: #00000081;">Password</label>
-          <input type="password" class="form-control input-register" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+          <input type="password" class="form-control input-register" name="password" placeholder="Password" required>
         </div>
-        <button type="button" class="btn btn-signUp mt-3">Sign Up</button>
+        <button type="button" class="btn btn-signUp mt-3" onclick="submitForm()">Sign Up</button>
       </form>
     </div>
   </div>
@@ -53,5 +53,30 @@
 <div>
   <br>
 </div>
+<script>
+  function submitForm() {
+    const formData = {
+      username: document.querySelector('[name="username"]').value,
+      email: document.querySelector('[name="email"]').value,
+      password: document.querySelector('[name="password"]').value
+    };
+
+    fetch('/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+            .then(response => {
+              if (!response.ok) {
+                return response.text().then(text => { throw new Error(text) });
+              }
+              return response.text();
+            })
+            .then(data => alert(data))
+            .catch(error => alert(`Error: ${error.message}`));
+  }
+</script>
 </body>
 </html>
