@@ -1,3 +1,4 @@
+//JS Sidebar pada dashboard Admin
 document.addEventListener('DOMContentLoaded', function() {
     const dashboardLinks = document.querySelectorAll('.dashboard-link')
     const contentDashboard = document.querySelectorAll('.content-dashboard')
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 })
 
+// JS untuk button edit product pada library dashboard admin
 document.addEventListener('DOMContentLoaded', function () {
     const editButtons = document.querySelectorAll('.button-editProd');
 
