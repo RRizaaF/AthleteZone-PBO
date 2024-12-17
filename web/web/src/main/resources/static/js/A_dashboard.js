@@ -94,3 +94,139 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const cartButtons = document.querySelectorAll('.btn-cart');
+
+    cartButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const userId = button.getAttribute('data-user-id');
+
+            // Tambahkan URL yang sesuai dengan endpoint
+            fetch(`/A_dashboard/${userId}/cartItems`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json(); // Konversi ke JSON
+                })
+                .then(cartItems => {
+                    // Kosongkan tabel sebelum menambahkan data baru
+                    const cartItemsTable = document.getElementById('cartItemsTable');
+                    cartItemsTable.innerHTML = '';
+
+                    // Tambahkan item ke tabel
+                    cartItems.forEach(item => {
+                        const row = `
+                            <tr>
+                                <td>${item.productName}</td>
+                                <td>${item.quantity}</
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                td>
+                                <td>${item.price}</td>
+                                <td>${item.subTotal}</td>
+                            </tr>
+                        `;
+                        cartItemsTable.insertAdjacentHTML('beforeend', row);
+                    });
+                })
+                .catch(error => console.error('Error fetching cart items:', error));
+        });
+    });
+});

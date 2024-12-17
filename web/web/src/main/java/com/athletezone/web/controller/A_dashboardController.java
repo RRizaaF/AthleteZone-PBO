@@ -1,8 +1,14 @@
 package com.athletezone.web.controller;
 
+import com.athletezone.web.dto.CartItemDTO;
+import com.athletezone.web.dto.OrderDTO;
+import com.athletezone.web.models.Cart;
+import com.athletezone.web.models.CartItem;
 import com.athletezone.web.models.Product;
+import com.athletezone.web.services.CartService;
+import com.athletezone.web.services.OrderService;
 import com.athletezone.web.services.ProductService;
-import org.springframework.http.ResponseEntity;
+import com.athletezone.web.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
@@ -15,21 +21,49 @@ import java.util.List;
 @Controller
 public class A_dashboardController {
     private final ProductService productService;
+    private final OrderService orderService;
+    private final UserService userService;
+    private final CartService cartService;
 
-    public A_dashboardController(ProductService productService) {
+    public A_dashboardController(ProductService productService, OrderService orderService, UserService userService, CartService cartService) {
         this.productService = productService;
+        this.orderService = orderService;
+        this.userService = userService;
+        this.cartService = cartService;
     }
 
     @GetMapping("/A_dashboard")
     public String showDashboard(Model model) {
+        // Untuk Tampilkan Order
+        List<OrderDTO> orders = orderService.getAllOrders(); // Jika semua, buat query tambahan
+        model.addAttribute("orders", orders);
+
+        // Untuk Tampilkan Product di Library
         List<ProductDTO> products = productService.getAllProducts();
         model.addAttribute("products", products);
 
+        // Untuk Penampung Edit Product
         Product product = new Product();
         model.addAttribute("product", product);
         return "A_dashboard";
     }
 
+    //Controller untuk Halaman Order
+    @GetMapping("/A_dashboard/{userId}/cartItems")
+    @ResponseBody
+    public List<CartItemDTO> getCartItems(@PathVariable Long userId) {
+        Cart cart = cartService.getCartByUserId(userId);
+        return cart.getCartItems().stream()
+                .map(item -> new CartItemDTO(
+                        item.getProduct().getName(),
+                        item.getQuantity(),
+                        item.getProduct().getPrice(),
+                        item.getSubTotal()
+                ))
+                .toList();
+    }
+
+    // Controller untuk Halaman Library
     @PostMapping("/A_dashboard/addProd")
     public String addProduct(@ModelAttribute("product") Product product, @RequestParam("photo") MultipartFile file, Model model) {
         try {
