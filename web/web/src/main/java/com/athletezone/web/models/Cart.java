@@ -3,6 +3,7 @@ package com.athletezone.web.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,12 +24,7 @@ public class Cart {
 
     // Relasi ke Product
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartItem> items;
+    private List<CartItem> cartItems = new ArrayList<>();
 
     private double totalPrice;
-
-    // Metode getter untuk cartItems
-    public List<CartItem> getCartItems() {
-        return items;
-    }
 }

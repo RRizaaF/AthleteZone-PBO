@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -35,20 +36,42 @@ public class CartServiceImpl implements CartService {
 
 
     @Override
-    public void addToCart(Long userId, Long productId, int quantity) {
+    public void addToCart(Long userId, Long productId) {
+        // Cari cart berdasarkan user
         Cart cart = cartRepository.findByUserId(userId);
-        Product product = productRepository.findById(productId).orElseThrow();
 
-        CartItem cartItem = CartItem.builder()
-                .cart(cart)
-                .product(product)
-                .quantity(quantity)
-                .subTotal(quantity * product.getPrice())
-                .build();
+        // Cari produk berdasarkan ID
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
 
-        cartItemRepository.save(cartItem);
+        // Periksa apakah produk sudah ada di cart items
+        Optional<CartItem> existingCartItem = cart.getCartItems().stream()
+                .filter(item -> item.getProduct().getId().equals(productId))
+                .findFirst();
 
-        cart.setTotalPrice(cart.getTotalPrice() + cartItem.getSubTotal());
+        if (existingCartItem.isPresent()) {
+            // Jika produk sudah ada, tambahkan quantity
+            CartItem cartItem = existingCartItem.get();
+            cartItem.setQuantity(cartItem.getQuantity() + 1);
+            cartItem.setSubTotal(cartItem.getQuantity() * product.getPrice());
+        } else {
+            // Jika produk belum ada di keranjang, buat item baru
+            CartItem newCartItem = CartItem.builder()
+                    .cart(cart)
+                    .product(product)
+                    .quantity(1)
+                    .subTotal(product.getPrice())
+                    .build();
+            cart.getCartItems().add(newCartItem);
+        }
+
+        // Hitung ulang total harga
+        double totalPrice = cart.getCartItems().stream()
+                .mapToDouble(CartItem::getSubTotal)
+                .sum();
+        cart.setTotalPrice(totalPrice);
+
+        // Simpan cart
         cartRepository.save(cart);
     }
 }

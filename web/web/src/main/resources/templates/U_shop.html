@@ -29,14 +29,14 @@
         <div class="content-category shoes">
             <div class="row g-0 mb-2 pt-4" style="padding-left: 350px; width: 99vw; height: fit-content">
                 <div class="col-md-4" th:each="product : ${products}"
-                     th:if="${product.category} == 'shoes'">
+                     th:if="${product.getCategory()} == 'shoes'">
                     <div class="card" style="width: 20rem;">
-                        <a th:href="@{'/U_product/' + ${product.id}}" style="text-decoration: none; color: black">
-                            <img th:src="@{${product.photoUrl}}" class="card-img-top" alt="Product Image">
+                        <a th:href="@{'/U_product/' + ${product.getId()}}" style="text-decoration: none; color: black">
+                            <img th:src="@{${product.getPhotoUrl()}}" class="card-img-top" alt="Product Image">
                             <div class="card-body">
-                                <p th:text="${product.name}" class="card-text"></p>
-                                <p style="color: #6C7581" th:text="${product.brand}"></p>
-                                <p th:text="'Rp ' + ${product.price}"></p>
+                                <p th:text="${product.getName()}" class="card-text"></p>
+                                <p style="color: #6C7581" th:text="${product.getBrand()}"></p>
+                                <p th:text="'Rp ' + ${product.getPrice()}"></p>
                             </div>
                         </a>
                     </div>
@@ -48,14 +48,14 @@
         <div class="content-category jerseys" style="display: none">
             <div class="row g-0 mb-2 pt-4" style="padding-left: 350px; width: 99vw; height: fit-content" >
                 <div class="col-md-4" th:each="product : ${products}"
-                     th:if="${product.category} == 'jerseys'">
+                     th:if="${product.getCategory()} == 'jerseys'">
                     <div class="card" style="width: 20rem;">
-                        <a th:href="@{'/U_product/' + ${product.id}}" style="text-decoration: none; color: black">
-                            <img th:src="${product.photoUrl}" class="card-img-top">
+                        <a th:href="@{'/U_product/' + ${product.getId()}}" style="text-decoration: none; color: black">
+                            <img th:src="${product.getPhotoUrl()}" class="card-img-top">
                             <div class="card-body">
-                                <p th:text="${product.name}" class="card-text"></p>
-                                <p style="color: #6C7581" th:text="${product.brand}"></p>
-                                <p th:text="'Rp ' + ${product.price}"></p>
+                                <p th:text="${product.getName()}" class="card-text"></p>
+                                <p style="color: #6C7581" th:text="${product.getBrand()}"></p>
+                                <p th:text="'Rp ' + ${product.getPrice()}"></p>
                             </div>
                         </a>
                     </div>
@@ -67,14 +67,14 @@
         <div class="content-category socks" style="display: none">
             <div class="row g-0 mb-2 pt-4" style="padding-left: 350px; width: 99vw; height: fit-content" >
                 <div class="col-md-4" th:each="product : ${products}"
-                     th:if="${product.category} == 'socks'">
+                     th:if="${product.getCategory()} == 'socks'">
                     <div class="card" style="width: 20rem;">
-                        <a th:href="@{'/U_product/' + ${product.id}}" style="text-decoration: none; color: black">
-                            <img th:src="@{${product.photoUrl}}" class="card-img-top">
+                        <a th:href="@{'/U_product/' + ${product.getId()}}" style="text-decoration: none; color: black">
+                            <img th:src="@{${product.getPhotoUrl()}}" class="card-img-top">
                             <div class="card-body">
-                                <p th:text="${product.name}" class="card-text"></p>
+                                <p th:text="${product.getName()}" class="card-text"></p>
                                 <p style="color: #6C7581" th:text="${product.brand}"></p>
-                                <p th:text="'Rp ' + ${product.price}"></p>
+                                <p th:text="'Rp ' + ${product.getPrice()}"></p>
                             </div>
                         </a>
                     </div>
@@ -86,14 +86,14 @@
         <div class="content-category pants" style="display: none">
             <div class="row g-0 mb-2 pt-4" style="padding-left: 350px; width: 99vw; height: fit-content">
                 <div class="col-md-4" th:each="product : ${products}"
-                     th:if="${product.category} == 'pants'">
+                     th:if="${product.getCategory()} == 'pants'">
                     <div class="card" style="width: 20rem;">
-                        <a th:href="@{'/U_product/' + ${product.id}}" style="text-decoration: none; color: black">
-                            <img th:src="@{${product.photoUrl}}" class="card-img-top">
+                        <a th:href="@{'/U_product/' + ${product.getId()}}" style="text-decoration: none; color: black">
+                            <img th:src="@{${product.getPhotoUrl()}}" class="card-img-top">
                             <div class="card-body">
-                                <p th:text="${product.name}" class="card-text"></p>
-                                <p style="color: #6C7581" th:text="${product.brand}"></p>
-                                <p th:text="'Rp ' + ${product.price}"></p>
+                                <p th:text="${product.getName()}" class="card-text"></p>
+                                <p style="color: #6C7581" th:text="${product.getBrand()}"></p>
+                                <p th:text="'Rp ' + ${product.getPrice()}"></p>
                             </div>
                         </a>
                     </div>
@@ -105,14 +105,14 @@
         <div class="content-category caps" style="display: none">
             <div class="row g-0 mb-2 pt-4" style="padding-left: 350px; width: 99vw; height: fit-content">
                 <div class="col-md-4" th:each="product : ${products}"
-                     th:if="${product.category} == 'caps'">
+                     th:if="${product.getCategory()} == 'caps'">
                     <div class="card" style="width: 20rem;">
-                        <a th:href="@{'/U_product/' + ${product.id}}" style="text-decoration: none; color: black">
-                            <img th:src="@{${product.photoUrl}}" class="card-img-top">
+                        <a th:href="@{'/U_product/' + ${product.getId()}}" style="text-decoration: none; color: black">
+                            <img th:src="@{${product.getPhotoUrl()}}" class="card-img-top">
                             <div class="card-body">
-                                <p th:text="${product.name}" class="card-text"></p>
-                                <p style="color: #6C7581" th:text="${product.brand}"></p>
-                                <p th:text="'Rp ' + ${product.price}"></p>
+                                <p th:text="${product.getName()}" class="card-text"></p>
+                                <p style="color: #6C7581" th:text="${product.getBrand()}"></p>
+                                <p th:text="'Rp ' + ${product.getPrice()}"></p>
                             </div>
                         </a>
                     </div>

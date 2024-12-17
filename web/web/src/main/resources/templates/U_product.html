@@ -25,32 +25,32 @@
 <div class="container d-flex mt-3 justify-content-center">
   <!-- Gambar Kecil di sebelah kiri -->
   <div class="secondary-image">
-    <img class="sec-image" th:src="@{${product.photoUrl}}" alt="Secondary Image">
-    <img class="sec-image" th:src="@{${product.photoUrl}}" alt="Secondary Image">
-    <img class="sec-image" th:src="@{${product.photoUrl}}" alt="Secondary Image">
-    <img class="sec-image" th:src="@{${product.photoUrl}}" alt="Secondary Image">
+    <img class="sec-image" th:src="@{${product.getPhotoUrl()}}" alt="Secondary Image">
+    <img class="sec-image" th:src="@{${product.getPhotoUrl()}}" alt="Secondary Image">
+    <img class="sec-image" th:src="@{${product.getPhotoUrl()}}" alt="Secondary Image">
+    <img class="sec-image" th:src="@{${product.getPhotoUrl()}}" alt="Secondary Image">
   </div>
 
   <!-- Gambar Utama dari produk -->
   <div class="primary-image ms-3 me-3">
-    <img th:src="@{${product.photoUrl}}" class="card-img-top" alt="Product Image">
+    <img th:src="@{${product.getPhotoUrl()}}" class="card-img-top" alt="Product Image">
   </div>
 
   <!-- Deskripsi konten di sebelah kanan -->
   <div class="desc-content">
     <!-- Nama Produk -->
-    <h4 th:text="${product.name}">Product Name</h4>
+    <h4 th:text="${product.getName()}"></h4>
 
     <!-- Deskripsi Produk -->
-    <h5 style="color: #6C7581">Men's Shoes</h5>
+    <h5 style="color: #6C7581" th:text="${product.getBrand()}">Men's Shoes</h5>
 
     <!-- Harga Produk -->
-    <p th:text="'Rp ' + ${product.price}">Rp 1,749,000</p>
+    <p th:text="'Rp ' + ${product.getPrice()}">Rp 1,749,000</p>
 
     <!-- Gambar Model -->
     <div class="model-image d-flex">
-      <img class="mod-image" th:src="@{${product.photoUrl}}" alt="Model Image">
-      <img class="mod-image" th:src="@{${product.photoUrl}}" alt="Model Image">
+      <img class="mod-image" th:src="@{${product.getPhotoUrl()}}" alt="Model Image">
+      <img class="mod-image" th:src="@{${product.getPhotoUrl()}}" alt="Model Image">
     </div>
 
     <!-- Pilih Ukuran -->
@@ -67,9 +67,16 @@
 
     <!-- Tombol -->
     <div class="button-addnfav">
-      
-      <button type="submit" class="btn btn-primary">Add to Cart</button>
-      <button type="submit" class="btn btn-dark">Favourite</button>
+      <form th:action="@{/U_product/addToCart}" method="post">
+        <!-- Kirim productId -->
+        <input type="hidden" name="productId" th:value="${product.getId()}">
+        <!-- Kirim userId, ganti dengan ID user saat ini -->
+        <input type="hidden" name="userId" th:value="${userId}">
+
+        <button type="submit" class="btn btn-primary">Add to Cart</button>
+        <button type="submit" class="btn btn-dark">Favourite</button>
+      </form>
+      <p>User ID: <span th:text="${userId}"></span></p>
     </div>
   </div>
 </div>

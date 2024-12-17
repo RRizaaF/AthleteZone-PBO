@@ -15,5 +15,5 @@ public interface CartService {
 
     public List<CartItem> getCartItemsByUserId(Long userId);
 
-    public void addToCart(Long userId, Long productId, int quantity);
+    public void addToCart(Long userId, Long productId);
 }
