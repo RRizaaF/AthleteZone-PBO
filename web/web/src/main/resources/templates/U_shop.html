@@ -31,8 +31,8 @@
                 <div class="col-md-4" th:each="product : ${products}"
                      th:if="${product.category} == 'shoes'">
                     <div class="card" style="width: 20rem;">
-                        <a th:href="@{'/Uproduct/' + ${product.id}}" style="text-decoration: none; color: black">
-                            <img th:src="${product.photoUrl}" class="card-img-top">
+                        <a th:href="@{'/U_product/' + ${product.id}}" style="text-decoration: none; color: black">
+                            <img th:src="@{${product.photoUrl}}" class="card-img-top" alt="Product Image">
                             <div class="card-body">
                                 <p th:text="${product.name}" class="card-text"></p>
                                 <p style="color: #6C7581" th:text="${product.brand}"></p>

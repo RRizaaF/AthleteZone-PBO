@@ -22,36 +22,38 @@
 <!-- Navbar -->
 <div th:replace="fragments/U_navbar"></div>
 
-
 <div class="container d-flex mt-3 justify-content-center">
   <!-- Gambar Kecil di sebelah kiri -->
   <div class="secondary-image">
-    <img class="sec-image" src="img/sepatu1.svg" alt="">
-    <img class="sec-image" src="img/sepatu1.svg" alt="">
-    <img class="sec-image" src="img/sepatu1.svg" alt="">
-    <img class="sec-image" src="img/sepatu1.svg" alt="">
-    <img class="sec-image" src="img/sepatu1.svg" alt="">
-    <img class="sec-image" src="img/sepatu1.svg" alt="">
-    <img class="sec-image" src="img/sepatu1.svg" alt="">
-    <img class="sec-image" src="img/sepatu1.svg" alt="">
-    <img class="sec-image" src="img/sepatu1.svg" alt="">
-    <img class="sec-image" src="img/sepatu1.svg" alt="">
+    <img class="sec-image" th:src="@{${product.photoUrl}}" alt="Secondary Image">
+    <img class="sec-image" th:src="@{${product.photoUrl}}" alt="Secondary Image">
+    <img class="sec-image" th:src="@{${product.photoUrl}}" alt="Secondary Image">
+    <img class="sec-image" th:src="@{${product.photoUrl}}" alt="Secondary Image">
   </div>
 
   <!-- Gambar Utama dari produk -->
   <div class="primary-image ms-3 me-3">
-    <img class="prim-image" src="img/sepatu1.svg" alt="">
+    <img th:src="@{${product.photoUrl}}" class="card-img-top" alt="Product Image">
   </div>
 
-  <!-- Deskripsi konten di sebelah kanan   -->
+  <!-- Deskripsi konten di sebelah kanan -->
   <div class="desc-content">
-    <h4>Nike Air Max 1 Essential Premium</h4>
+    <!-- Nama Produk -->
+    <h4 th:text="${product.name}">Product Name</h4>
+
+    <!-- Deskripsi Produk -->
     <h5 style="color: #6C7581">Men's Shoes</h5>
-    <p>Rp 1,749,000</p>
+
+    <!-- Harga Produk -->
+    <p th:text="'Rp ' + ${product.price}">Rp 1,749,000</p>
+
+    <!-- Gambar Model -->
     <div class="model-image d-flex">
-      <img class="mod-image" src="img/sepatu1.svg" alt="">
-      <img class="mod-image" src="img/sepatu1.svg" alt="">
+      <img class="mod-image" th:src="@{${product.photoUrl}}" alt="Model Image">
+      <img class="mod-image" th:src="@{${product.photoUrl}}" alt="Model Image">
     </div>
+
+    <!-- Pilih Ukuran -->
     <p style="margin-top: 24px">Select Size</p>
     <div class="size-product d-flex">
       <h5 class="size-prod">EU 41</h5>
@@ -62,10 +64,14 @@
       <h5 class="size-prod">EU 44.5</h5>
       <h5 class="size-prod">EU 45</h5>
     </div>
+
+    <!-- Tombol -->
     <div class="button-addnfav">
-      <button type="submit" class="btn btn-primary">Add to Chart</button>
+      
+      <button type="submit" class="btn btn-primary">Add to Cart</button>
       <button type="submit" class="btn btn-dark">Favourite</button>
     </div>
   </div>
 </div>
 </body>
+</html>

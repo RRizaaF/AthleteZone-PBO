@@ -42,7 +42,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDTO getProductById(Long id) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Product not found"));;
+                .orElseThrow(() -> new IllegalArgumentException("Product not found"));
         return convertToDTO(product);
     }
 
