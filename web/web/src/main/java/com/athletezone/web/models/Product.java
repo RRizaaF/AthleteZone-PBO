@@ -1,21 +1,12 @@
 package com.athletezone.web.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -39,4 +30,8 @@ public class Product {
 
     @UpdateTimestamp
     private LocalDateTime updatedOn;
+
+    // Relasi ke CartItem
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartItem> cartItems;
 }

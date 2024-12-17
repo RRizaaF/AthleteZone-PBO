@@ -1,3 +1,4 @@
+//JS Sidebar pada dashboard Admin
 document.addEventListener('DOMContentLoaded', function() {
     const dashboardLinks = document.querySelectorAll('.dashboard-link')
     const contentDashboard = document.querySelectorAll('.content-dashboard')
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 })
 
+// JS untuk button edit product pada library dashboard admin
 document.addEventListener('DOMContentLoaded', function () {
     const editButtons = document.querySelectorAll('.button-editProd');
 
@@ -90,5 +92,141 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             previewPhoto.style.display = 'none'; // Sembunyikan pratinjau jika input kosong
         }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const cartButtons = document.querySelectorAll('.btn-cart');
+
+    cartButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const userId = button.getAttribute('data-user-id');
+
+            // Tambahkan URL yang sesuai dengan endpoint
+            fetch(`/A_dashboard/${userId}/cartItems`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json(); // Konversi ke JSON
+                })
+                .then(cartItems => {
+                    // Kosongkan tabel sebelum menambahkan data baru
+                    const cartItemsTable = document.getElementById('cartItemsTable');
+                    cartItemsTable.innerHTML = '';
+
+                    // Tambahkan item ke tabel
+                    cartItems.forEach(item => {
+                        const row = `
+                            <tr>
+                                <td>${item.productName}</td>
+                                <td>${item.quantity}</
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                td>
+                                <td>${item.price}</td>
+                                <td>${item.subTotal}</td>
+                            </tr>
+                        `;
+                        cartItemsTable.insertAdjacentHTML('beforeend', row);
+                    });
+                })
+                .catch(error => console.error('Error fetching cart items:', error));
+        });
     });
 });
