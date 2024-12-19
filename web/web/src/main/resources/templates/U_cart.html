@@ -29,44 +29,23 @@
         <div class="col-md-8">
             <h2 class="mb-4">Bag</h2>
             <!-- Item 1 -->
-            <div class="d-flex mb-4 border-bottom pb-3">
+            <div th:each="item : ${cart.cartItems}" class="d-flex mb-4 border-bottom pb-3">
                 <div>
-                    <img src="img/cart2.svg" alt="Nike Court Vision" class="me-3" style="width: 150px; height: auto;">
+                    <img th:src="${item.product.photoUrl}" alt="Nike Court Vision" class="me-3" style="width: 150px; height: auto;">
                     <div class="d-flex align-items-center justify-content-between mt-3" style="width: 100px; border: 1px solid #ddd; border-radius: 30px; padding: 5px;">
                         <button class="btn btn-outline-secondary btn-sm" style="border: none;">-</button>
-                        <span style="font-weight: bold; font-size: 16px;">1</span>
+                        <span style="font-weight: bold; font-size: 16px;" th:text="${item.quantity}"></span>
                         <button class="btn btn-outline-secondary btn-sm" style="border: none;">+</button>
                     </div>
                 </div>
                 <div>
-                    <h4 class="fw-bold">Nike Court Vision Low Next Nature</h4>
+                    <h4 class="fw-bold" th:text="${item.product.name}"></h4>
                     <p class="mb-1">Men's Shoes</p>
                     <p class="mb-1">White/Burgundy Crush</p>
                     <p>Size <a href="#" class="text-decoration-underline" style="color: #000000">45.5</a></p>
                 </div>
                 <div class="ms-auto text-end">
-                    <p class="fw-bold">Rp 799.000,00</p>
-                </div>
-            </div>
-
-            <!-- Item 2 -->
-            <div class="d-flex mb-4 border-bottom pb-3">
-                <div>
-                    <img src="img/cart1.svg" alt="Nike Lunar Roam" class="me-3" style="width: 150px; height: auto;">
-                    <div class="d-flex align-items-center justify-content-between mt-3" style="width: 100px; border: 1px solid #ddd; border-radius: 30px; padding: 5px;">
-                        <button class="btn btn-outline-secondary btn-sm" style="border: none;">-</button>
-                        <span style="font-weight: bold; font-size: 16px;">1</span>
-                        <button class="btn btn-outline-secondary btn-sm" style="border: none;">+</button>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="fw-bold">Nike Lunar Roam</h4>
-                    <p class="mb-1">Men's Shoes</p>
-                    <p class="mb-1">Summit White/Coconut Milk/Khaki/Black</p>
-                    <p>Size <a href="#" class="text-decoration-underline" style="color: #000000">40.5</a></p>
-                </div>
-                <div class="ms-auto text-end">
-                    <p class="fw-bold">Rp 2.379.000,00</p>
+                    <p class="fw-bold" th:text="${item.subTotal}"></p>
                 </div>
             </div>
         </div>
@@ -77,7 +56,7 @@
             <div class="p-3">
                 <div class="d-flex justify-content-between mb-3">
                     <p>Subtotal</p>
-                    <p class="fw-bold">Rp 3.178.000,00</p>
+                    <p class="fw-bold" th:text="${cart.getTotalPrice()}"></p>
                 </div>
                 <div class="d-flex justify-content-between mb-3">
                     <p>Estimated Delivery & Handling</p>
@@ -89,7 +68,7 @@
                 </div>
                 <div class="d-flex justify-content-between border-top pt-3">
                     <p>Total</p>
-                    <p class="fw-bold">Rp 3.178.000,00</p>
+                    <p class="fw-bold" th:text="${cart.getTotalPrice()}"></p>
                 </div>
                 <div class="mt-4 button">
                     <button class="btn btn-summary w-100 mb-2">Guest Checkout</button>

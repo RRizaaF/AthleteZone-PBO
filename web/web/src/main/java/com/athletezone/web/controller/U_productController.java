@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -45,10 +46,16 @@ public class U_productController {
         return "redirect:/login"; // Redirect ke login jika session tidak valid
     }
 
-    @PostMapping("/U_product/addToCart")
-    public String addToCart(@RequestParam("userId") Long userId,
-                            @RequestParam("productId") Long productId) {
-        cartService.addToCart(userId, productId);
-        return "redirect:/U_shop"; // Redirect kembali ke halaman U_shop
+    @PostMapping("/addToCart")
+    public String addToCart(@RequestParam Long userId, @RequestParam Long productId, RedirectAttributes redirectAttributes) {
+        try {
+            cartService.addToCart(userId, productId);
+            redirectAttributes.addFlashAttribute("successMessage", "Product added to cart successfully.");
+            return "redirect:/U_cart";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Failed to add product to cart: " + e.getMessage());
+            return "redirect:/productPage"; // Ganti dengan halaman sebelumnya
+        }
     }
+
 }

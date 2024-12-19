@@ -67,7 +67,7 @@
 
     <!-- Tombol -->
     <div class="button-addnfav">
-      <form th:action="@{/U_product/addToCart}" method="post">
+      <form th:action="@{/addToCart}" method="post">
         <!-- Kirim productId -->
         <input type="hidden" name="productId" th:value="${product.getId()}">
         <!-- Kirim userId, ganti dengan ID user saat ini -->
