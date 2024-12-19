@@ -74,8 +74,13 @@
               }
               return response.text();
             })
-            .then(data => alert(data))
-            .catch(error => alert(`Error: ${error.message}`));
+            .then((message) => {
+              alert(message);
+              window.location.href = '/login'; // Redirect ke halaman login
+            })
+            .catch((error) => {
+              alert(`Error: ${error.message}`);
+            });
   }
 </script>
 </body>
