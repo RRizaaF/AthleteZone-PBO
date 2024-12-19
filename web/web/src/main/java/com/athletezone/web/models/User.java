@@ -14,10 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -27,12 +24,6 @@ public class User {
 
     @Column(nullable = false)
     private String password;
-
-    @CreationTimestamp
-    private LocalDateTime createdOn;
-
-    @UpdateTimestamp
-    private LocalDateTime updatedOn;
 
     // Relasi ke Cart (satu user memiliki satu keranjang)
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)

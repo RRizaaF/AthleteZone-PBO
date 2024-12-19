@@ -12,17 +12,11 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Table(name = "carts")
-public class Cart {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    // Relasi ke User
+public class Cart extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    // Relasi ke Product
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> cartItems = new ArrayList<>();
 

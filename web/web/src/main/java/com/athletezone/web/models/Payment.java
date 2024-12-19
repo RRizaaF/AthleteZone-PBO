@@ -12,19 +12,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Table(name = "payments")
-public class Payment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class Payment extends BaseEntity {
     private String method;
-
     private String address;
-
     private String status;
-
     private double totalAmount;
-
-    @CreationTimestamp
-    private LocalDateTime paymentDate;
 }
