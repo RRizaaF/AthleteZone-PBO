@@ -132,3 +132,28 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.status-dropdown').forEach(dropdown => {
+        dropdown.addEventListener('change', function () {
+            const orderId = this.getAttribute('data-order-id');
+            const newStatus = this.value;
+
+            fetch(`/A_dashboard/updateStatus/${orderId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ status: newStatus })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Status updated successfully!');
+                    } else {
+                        alert('Failed to update status.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    });
+});

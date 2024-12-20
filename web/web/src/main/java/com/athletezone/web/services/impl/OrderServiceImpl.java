@@ -2,10 +2,13 @@ package com.athletezone.web.services.impl;
 
 import com.athletezone.web.dto.OrderDTO;
 import com.athletezone.web.models.Order;
+import com.athletezone.web.models.Payment;
 import com.athletezone.web.repositories.OrderRepository;
 import com.athletezone.web.services.OrderService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,5 +44,17 @@ public class OrderServiceImpl implements OrderService {
                 .paymentStatus(order.getPayment().getStatus()) // Status pembayaran
                 .address(order.getPayment().getAddress()) // Alamat pembayaran
                 .build();
+    }
+
+    @Override
+    @Transactional
+    public void updateOrderStatus(Long orderId, String newStatus) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new EntityNotFoundException("Order not found"));
+
+        Payment payment = order.getPayment();
+        if (payment != null) {
+            payment.setStatus(newStatus);
+        }
     }
 }

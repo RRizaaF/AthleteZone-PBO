@@ -162,7 +162,18 @@
                         </td>
                         <td th:text="${order.getTotalAmount()}"></td>
                         <td th:text="${order.getPaymentMethod()}"></td>
-                        <td th:text="${order.getPaymentStatus()}"></td>
+                        <td>
+                            <select class="form-select status-dropdown"
+                                    th:data-order-id="${order.getId()}"
+                                    th:value="${order.getPaymentStatus()}">
+                                <option value="paid" th:attr="style=${order.getPaymentStatus() == 'paid' ? 'selected' : ''}">
+                                    Paid
+                                </option>
+                                <option value="on process" th:attr="style=${order.getPaymentStatus() == 'on process' ? 'selected' : ''}">
+                                    On Process
+                                </option>
+                            </select>
+                        </td>
                         <td th:text="${order.getAddress()}"></td>
                         <td>
                             <!-- Tombol Edit -->

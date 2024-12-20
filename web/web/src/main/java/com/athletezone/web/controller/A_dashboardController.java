@@ -9,6 +9,7 @@ import com.athletezone.web.services.CartService;
 import com.athletezone.web.services.OrderService;
 import com.athletezone.web.services.ProductService;
 import com.athletezone.web.services.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class A_dashboardController {
@@ -61,6 +63,18 @@ public class A_dashboardController {
                         item.getSubTotal()
                 ))
                 .toList();
+    }
+
+    @PutMapping("/A_dashboard/updateStatus/{orderId}")
+    public ResponseEntity<String> updateStatus(@PathVariable Long orderId, @RequestBody Map<String, String> payload) {
+        String newStatus = payload.get("status");
+
+        if (!"paid".equals(newStatus) && !"on process".equals(newStatus)) {
+            return ResponseEntity.badRequest().body("Invalid status value");
+        }
+
+        orderService.updateOrderStatus(orderId, newStatus);
+        return ResponseEntity.ok("Status updated successfully");
     }
 
     // Controller untuk Halaman Library

@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 public class Payment extends BaseEntity {
     private String method;
     private String address;
-    private String status;
+
+    @Builder.Default
+    private String status = "paid";
+
     private double totalAmount;
 }
