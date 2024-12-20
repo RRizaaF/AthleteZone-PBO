@@ -3,6 +3,22 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
+/* Tambahkan tinggi navbar agar konten sticky di bawahnya */
+.right-section {
+    position: sticky;
+    top: 80px; /* Sesuaikan dengan tinggi navbar */
+    height: calc(100vh - 80px); /* Pastikan konten kanan bisa full viewport minus navbar */
+    overflow-y: auto; /* Jika konten di dalamnya panjang, tambahkan scroll */
+    background-color: #fff;
+    border-left: none; /* Menghapus border kiri */
+    padding: 20px;
+}
+
+.right-section::-webkit-scrollbar {
+    display: none; /* Untuk Chrome, Safari, dan Edge */
+}
+
+
 .order-summary {
     background-color: #ffffff;
     padding: 20px;

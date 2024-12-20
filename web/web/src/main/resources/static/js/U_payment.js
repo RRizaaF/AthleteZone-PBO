@@ -36,4 +36,29 @@ $(document).ready(function () {
         $('#danaOption').addClass('active');
         $('#mastercardOption, #transferOption').removeClass('active');
     });
+
+
+// Function to calculate and update Duties & Taxes and Total
+    function calculateDutiesAndTotal() {
+        // Get the Subtotal value from the DOM (which was rendered by Thymeleaf)
+        const subtotalValueElement = document.getElementById('subtotalValue');
+        let subtotal = parseFloat(subtotalValueElement.textContent.replace('Rp ', '').replace(',', '').replace('.', ''));
+
+        // Calculate 12% Duties & Taxes
+        let dutiesAndTaxes = subtotal * 0.12;
+
+        // Update the Duties & Taxes in the DOM
+        const dutiesValueElement = document.getElementById('dutiesValue');
+        dutiesValueElement.textContent = 'Rp ' + dutiesAndTaxes.toLocaleString();
+
+        // Calculate Total (Subtotal + Duties & Taxes)
+        let total = subtotal + dutiesAndTaxes;
+
+        // Update the Total in the DOM
+        const totalValueElement = document.getElementById('totalValue');
+        totalValueElement.textContent = 'Rp ' + total.toLocaleString();
+    }
+
+// Call the function when the page is loaded
+    window.onload = calculateDutiesAndTotal;
 });

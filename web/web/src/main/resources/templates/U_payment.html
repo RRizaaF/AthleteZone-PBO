@@ -177,16 +177,17 @@
         </div>
 
         <!-- Right Section -->
-        <div class="col-lg-5">
+        <div class="col-lg-5 right-section">
             <div class="order-summary">
+                <!-- Konten order summary -->
                 <h4>Order Summary</h4>
                 <div class="d-flex justify-content-between mt-4">
                     <p>Subtotal</p>
-                    <p th:text="'Rp ' + ${#numbers.formatDecimal(cart.getTotalPrice(), 0, 'COMMA', 0, 'POINT')}"></p>
+                    <p id= "subTotalValue" th:text="'Rp ' + ${#numbers.formatDecimal(cart.getTotalPrice(), 0, 'COMMA', 0, 'POINT')}"></p>
                 </div>
                 <div class="d-flex justify-content-between">
                     <p>Duties & Taxes</p>
-                    <p>Rp 1.433.756,00</p>
+                    <p id="dutiesValue">Rp 0,00</p> <!-- Placeholder for Duties & Taxes -->
                 </div>
                 <div class="d-flex justify-content-between">
                     <p>Delivery/Shipping</p>
@@ -194,7 +195,7 @@
                 </div>
                 <div class="d-flex justify-content-between border-top border-bottom pt-3 pb-3">
                     <h5>Total</h5>
-                    <h5>Rp 4.450.756,00</h5>
+                    <h5 id="totalValue" th:text="'Rp ' + ${#numbers.formatDecimal(cart.getTotalPrice(), 0, 'COMMA', 0, 'POINT')}"></h5>
                 </div>
                 <p class="text-muted mt-2">Arrives Mon, 16 Dec - Fri, 20 Dec</p>
 
@@ -205,7 +206,7 @@
                         <p class="mb-0" th:text="${item.getProduct().getName()}">Nike Lunar Roam Men's Shoes</p>
                         <p class="text-muted mb-0" th:text="'Qty ' + ${item.getQuantity()}">Qty 1</p>
                         <p class="text-muted mb-0">Size EU 40.5</p>
-                        <p th:text="'Rp ' + ${item.getProduct().getPrice()}"></p>
+                        <p th:text="'Rp ' + ${#numbers.formatDecimal(item.getProduct().getPrice(), 0, 'COMMA', 0, 'POINT')}"></p>
                     </div>
                 </div>
             </div>
