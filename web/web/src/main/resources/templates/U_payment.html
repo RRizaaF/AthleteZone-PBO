@@ -37,10 +37,7 @@
                 <!-- Bagian Delivery -->
                 <div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="firstName" placeholder="First Name">
-                    </div>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                        <input type="text" class="form-control" id="userName" th:value="${user.getUsername()}" disabled>
                     </div>
                     <div class="mb-3">
                         <input type="text" class="form-control" id="address" placeholder="Start typing a street address or postcode">
@@ -50,7 +47,7 @@
                 <div>
                     <h5 class="mt-5 mb-4">What's your contact information?</h5>
                     <div class="mb-3">
-                        <input type="email" class="form-control" id="email" placeholder="Email">
+                        <input type="email" class="form-control" id="email" th:value="${user.getEmail()}" disabled>
                         <small class="text-muted ms-3">A confirmation email will be sent after checkout.</small>
                     </div>
                     <div class="mb-3">
@@ -185,7 +182,7 @@
                 <h4>Order Summary</h4>
                 <div class="d-flex justify-content-between mt-4">
                     <p>Subtotal</p>
-                    <p>Rp 3.017.000,00</p>
+                    <p th:text="'Rp ' + ${#numbers.formatDecimal(cart.getTotalPrice(), 0, 'COMMA', 0, 'POINT')}"></p>
                 </div>
                 <div class="d-flex justify-content-between">
                     <p>Duties & Taxes</p>
@@ -202,22 +199,13 @@
                 <p class="text-muted mt-2">Arrives Mon, 16 Dec - Fri, 20 Dec</p>
 
                 <!-- Products -->
-                <div class="d-flex align-items-center mb-3">
-                    <img src="https://via.placeholder.com/100" alt="Nike Lunar Roam">
+                <div th:each="item : ${cartItems}" class="d-flex align-items-center mb-3" >
+                    <img th:src="${item.getProduct().getPhotoUrl()}" alt="Nike Lunar Roam">
                     <div class="ms-3">
-                        <p class="mb-0">Nike Lunar Roam Men's Shoes</p>
-                        <p class="text-muted mb-0">Qty 1</p>
+                        <p class="mb-0" th:text="${item.getProduct().getName()}">Nike Lunar Roam Men's Shoes</p>
+                        <p class="text-muted mb-0" th:text="'Qty ' + ${item.getQuantity()}">Qty 1</p>
                         <p class="text-muted mb-0">Size EU 40.5</p>
-                        <p>Rp 2.379.000</p>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center">
-                    <img src="https://via.placeholder.com/100" alt="Nike Court Vision">
-                    <div class="ms-3">
-                        <p class="mb-0">Nike Court Vision Low Next Nature Men's Shoes</p>
-                        <p class="text-muted mb-0">Qty 1</p>
-                        <p class="text-muted mb-0">Size EU 45.5</p>
-                        <p>Rp 638.000</p>
+                        <p th:text="'Rp ' + ${item.getProduct().getPrice()}"></p>
                     </div>
                 </div>
             </div>

@@ -31,7 +31,6 @@ public class U_cartController {
             return "U_cart";
         }
         return "redirect:/login"; // Redirect ke login jika session tidak valid
-
     }
 }
 

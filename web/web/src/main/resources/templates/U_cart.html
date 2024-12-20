@@ -71,7 +71,7 @@
                     <p class="fw-bold" th:text="'Rp ' + ${#numbers.formatDecimal(cart.getTotalPrice, 0, 'COMMA', 0, 'POINT')}"></p>
                 </div>
                 <div class="mt-4 button">
-                    <button class="btn btn-summary w-100 mb-2">Checkout</button>
+                    <a th:href="@{/U_payment}" class="btn btn-summary w-100 mb-2">Checkout</a>
                 </div>
             </div>
         </div>
