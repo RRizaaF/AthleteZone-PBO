@@ -89,7 +89,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    // Menghapus produk berdasarkan ID
+    // Menghapus pr7 oduk berdasarkan ID
     public void deleteProductById(Long id) {
         productRepository.deleteById(id);
     }

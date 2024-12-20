@@ -46,7 +46,7 @@ public class U_productController {
         return "redirect:/login"; // Redirect ke login jika session tidak valid
     }
 
-    @PostMapping("/addToCart")
+    @PostMapping("/U_product/addToCart")
     public String addToCart(@RequestParam Long userId, @RequestParam Long productId, RedirectAttributes redirectAttributes) {
         try {
             cartService.addToCart(userId, productId);

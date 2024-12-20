@@ -45,7 +45,8 @@
     <h5 style="color: #6C7581" th:text="${product.getBrand()}">Men's Shoes</h5>
 
     <!-- Harga Produk -->
-    <p th:text="'Rp ' + ${product.getPrice()}">Rp 1,749,000</p>
+    <p th:text="'Rp ' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}"></p>
+
 
     <!-- Gambar Model -->
     <div class="model-image d-flex">
@@ -56,29 +57,35 @@
     <!-- Pilih Ukuran -->
     <p style="margin-top: 24px">Select Size</p>
     <div class="size-product d-flex">
-      <h5 class="size-prod">EU 41</h5>
-      <h5 class="size-prod">EU 42</h5>
-      <h5 class="size-prod">EU 42.5</h5>
-      <h5 class="size-prod">EU 43</h5>
-      <h5 class="size-prod">EU 44</h5>
-      <h5 class="size-prod">EU 44.5</h5>
-      <h5 class="size-prod">EU 45</h5>
+      <button class="size-prod" onclick="selectSize(this)" disabled>EU 44</button>
+      <button class="size-prod" onclick="selectSize(this)" disabled>EU 44.5</button>
+      <button class="size-prod" onclick="selectSize(this)" disabled>EU 45</button>
+      <button class="size-prod active-size" onclick="selectSize(this)">EU 45.5</button> <!-- Tombol Aktif -->
+      <button class="size-prod" onclick="selectSize(this)" disabled>EU 46</button>
+      <button class="size-prod" onclick="selectSize(this)" disabled>EU 47</button>
+      <button class="size-prod" onclick="selectSize(this)" disabled>EU 47.5</button>
+      <button class="size-prod" onclick="selectSize(this)" disabled>EU 48.5</button>
     </div>
+
+
+
 
     <!-- Tombol -->
     <div class="button-addnfav">
-      <form th:action="@{/addToCart}" method="post">
+      <form th:action="@{/U_product/addToCart}" method="post">
         <!-- Kirim productId -->
         <input type="hidden" name="productId" th:value="${product.getId()}">
         <!-- Kirim userId, ganti dengan ID user saat ini -->
         <input type="hidden" name="userId" th:value="${userId}">
 
-        <button type="submit" class="btn btn-primary">Add to Cart</button>
+        <button type="submit" class="btn btn-primary" id="addToCartBtn" disabled>Add to Cart</button>
+
         <button type="submit" class="btn btn-dark">Favourite</button>
       </form>
       <p>User ID: <span th:text="${userId}"></span></p>
     </div>
   </div>
 </div>
+<script src="/js/U_product.js"></script>
 </body>
 </html>

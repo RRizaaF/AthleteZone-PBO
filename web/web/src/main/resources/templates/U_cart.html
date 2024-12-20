@@ -25,9 +25,9 @@
 <!-- Cart Section -->
 <div class="container mt-5">
     <div class="row">
-        <!-- Bag Section -->
+        <!-- Cart Section -->
         <div class="col-md-8">
-            <h2 class="mb-4">Bag</h2>
+            <h2 class="mb-4">Cart</h2>
             <!-- Item 1 -->
             <div th:each="item : ${cart.cartItems}" class="d-flex mb-4 border-bottom pb-3">
                 <div>
@@ -40,12 +40,12 @@
                 </div>
                 <div>
                     <h4 class="fw-bold" th:text="${item.product.name}"></h4>
-                    <p class="mb-1">Men's Shoes</p>
+                    <p class="mb-1"th:text="${item.product.getBrand()}"></p>
                     <p class="mb-1">White/Burgundy Crush</p>
                     <p>Size <a href="#" class="text-decoration-underline" style="color: #000000">45.5</a></p>
                 </div>
                 <div class="ms-auto text-end">
-                    <p class="fw-bold" th:text="${item.subTotal}"></p>
+                    <p class="fw-bold" th:text="'Rp ' + ${#numbers.formatDecimal(item.subTotal, 0, 'COMMA', 0, 'POINT')}"></p>
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
             <div class="p-3">
                 <div class="d-flex justify-content-between mb-3">
                     <p>Subtotal</p>
-                    <p class="fw-bold" th:text="${cart.getTotalPrice()}"></p>
+                    <p class="fw-bold" th:text="'Rp ' + ${#numbers.formatDecimal(cart.getTotalPrice, 0, 'COMMA', 0, 'POINT')}"></p>
                 </div>
                 <div class="d-flex justify-content-between mb-3">
                     <p>Estimated Delivery & Handling</p>
@@ -68,11 +68,10 @@
                 </div>
                 <div class="d-flex justify-content-between border-top pt-3">
                     <p>Total</p>
-                    <p class="fw-bold" th:text="${cart.getTotalPrice()}"></p>
+                    <p class="fw-bold" th:text="'Rp ' + ${#numbers.formatDecimal(cart.getTotalPrice, 0, 'COMMA', 0, 'POINT')}"></p>
                 </div>
                 <div class="mt-4 button">
-                    <button class="btn btn-summary w-100 mb-2">Guest Checkout</button>
-                    <button class="btn btn-summary w-100">Member Checkout</button>
+                    <button class="btn btn-summary w-100 mb-2">Checkout</button>
                 </div>
             </div>
         </div>
