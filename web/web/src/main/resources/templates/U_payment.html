@@ -206,7 +206,7 @@
                         <p class="mb-0" th:text="${item.getProduct().getName()}">Nike Lunar Roam Men's Shoes</p>
                         <p class="text-muted mb-0" th:text="'Qty ' + ${item.getQuantity()}">Qty 1</p>
                         <p class="text-muted mb-0">Size EU 40.5</p>
-                        <p th:text="'Rp ' + ${item.getProduct().getPrice()}"></p>
+                        <p th:text="'Rp ' + ${#numbers.formatDecimal(item.getProduct().getPrice(), 0, 'COMMA', 0, 'POINT')}"></p>
                     </div>
                 </div>
             </div>
