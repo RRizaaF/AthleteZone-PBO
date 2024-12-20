@@ -35,43 +35,20 @@
 </section>
 
 <!-- New Arrival Section -->
+<!-- New Arrival Section -->
 <section id="NewArrival">
   <div class="container-fluid">
     <h5>New Arrival Just Landed</h5>
     <div class="row text-center">
-      <!-- Kartu Produk Pertama -->
-      <div class="col-md-4">
+      <!-- Perulangan Produk -->
+      <div class="col-md-4" th:each="product : ${limitedProducts}">
         <div class="card-fitur d-flex justify-content-center align-items-center">
-          <img class="sepatu1" src="img/sepatu3.svg" alt="">
+          <img th:src="@{${product.getPhotoUrl()}}" alt="Product Image">
         </div>
         <div class="info-card text-start mt-4">
-          <h4>Nike Air Max 1 Essential Premium</h4>
-          <p class="jenisSepatu">Men’s Shoes</p>
-          <p class="hargaSepatu">Rp 1,749,000</p>
-        </div>
-      </div>
-
-      <!-- Kartu Produk Kedua -->
-      <div class="col-md-4">
-        <div class="card-fitur d-flex justify-content-center align-items-center">
-          <img src="img/sepatu2.svg" alt="">
-        </div>
-        <div class="info-card text-start mt-4">
-          <h4>G.T Hustle Academy EP</h4>
-          <p class="jenisSepatu">Women’s Shoes</p>
-          <p class="hargaSepatu">Rp 2,349,000</p>
-        </div>
-      </div>
-
-      <!-- Kartu Produk Ketiga -->
-      <div class="col-md-4">
-        <div class="card-fitur d-flex justify-content-center align-items-center">
-          <img src="img/sepatu1.svg" alt="">
-        </div>
-        <div class="info-card text-start mt-4">
-          <h4>Nike Air Max 1 Essential Voizer</h4>
-          <p class="jenisSepatu">Men’s Shoes</p>
-          <p class="hargaSepatu">Rp 2,800,000</p>
+          <h4 th:text="${product.getName()}"></h4>
+          <p class="jenisSepatu" th:text="${product.getCategory()}"></p>
+          <p class="hargaSepatu" th:text="'Rp ' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}"></p>
         </div>
       </div>
     </div>
