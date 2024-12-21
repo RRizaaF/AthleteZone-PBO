@@ -18,4 +18,6 @@ public interface CartService {
     public void addToCart(Long userId, Long productId);
 
     public void addProductToCart(Long userId, Long productId);
+
+    public void clearCart(Long userId);
 }

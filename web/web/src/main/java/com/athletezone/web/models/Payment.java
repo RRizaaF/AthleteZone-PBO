@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -13,11 +14,17 @@ import java.time.LocalDateTime;
 @Builder
 @Table(name = "payments")
 public class Payment extends BaseEntity {
-    private String method;
+    private String paymentMethod;
     private String address;
+    private double totalAmount;
 
     @Builder.Default
     private String status = "paid";
 
-    private double totalAmount;
+    @OneToMany(mappedBy = "payment", cascade = CascadeType.ALL)
+    private List<PaymentItem> paymentItems;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

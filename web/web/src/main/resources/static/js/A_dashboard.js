@@ -100,23 +100,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     cartButtons.forEach(button => {
         button.addEventListener('click', function () {
-            const userId = button.getAttribute('data-user-id');
+            const orderId = button.getAttribute('data-order-id');
 
             // Tambahkan URL yang sesuai dengan endpoint
-            fetch(`/A_dashboard/${userId}/cartItems`)
+            fetch(`/A_dashboard/${orderId}/paymentItems`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     return response.json(); // Konversi ke JSON
                 })
-                .then(cartItems => {
+                .then(paymentItems => {
                     // Kosongkan tabel sebelum menambahkan data baru
-                    const cartItemsTable = document.getElementById('cartItemsTable');
-                    cartItemsTable.innerHTML = '';
+                    const paymentItemsTable = document.getElementById('paymentItemsTable');
+                    paymentItemsTable.innerHTML = '';
 
                     // Tambahkan item ke tabel
-                    cartItems.forEach(item => {
+                    paymentItems.forEach(item => {
                         const row = `
                             <tr>
                                 <td>${item.productName}</td>
@@ -125,10 +125,10 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <td>${item.subTotal}</td>
                             </tr>
                         `;
-                        cartItemsTable.insertAdjacentHTML('beforeend', row);
+                        paymentItemsTable.insertAdjacentHTML('beforeend', row);
                     });
                 })
-                .catch(error => console.error('Error fetching cart items:', error));
+                .catch(error => console.error('Error fetching payment items:', error));
         });
     });
 });

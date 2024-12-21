@@ -15,9 +15,13 @@ import java.util.List;
 public class Cart extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @EqualsAndHashCode.Exclude // Mencegah infinite recursion
+    @ToString.Exclude
     private User user;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    @EqualsAndHashCode.Exclude // Mencegah infinite recursion
+    @ToString.Exclude
     private List<CartItem> cartItems = new ArrayList<>();
 
     private double totalPrice;

@@ -10,6 +10,7 @@ import com.athletezone.web.repositories.ProductRepository;
 import com.athletezone.web.services.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -118,5 +119,13 @@ public class CartServiceImpl implements CartService {
         cartRepository.save(cart);
     }
 
-
+    @Override
+    @Transactional
+    public void clearCart(Long userId) {
+        Cart cart = cartRepository.findByUserId(userId);
+        if (cart != null) {
+            // Hapus semua CartItem yang ada pada Cart ini
+            cartItemRepository.deleteAllByCartId(cart.getId());
+        }
+    }
 }

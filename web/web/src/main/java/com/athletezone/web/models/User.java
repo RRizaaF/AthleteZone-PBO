@@ -27,9 +27,13 @@ public class User extends BaseEntity {
 
     // Relasi ke Cart (satu user memiliki satu keranjang)
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @EqualsAndHashCode.Exclude // Mencegah infinite recursion
+    @ToString.Exclude
     private Cart cart;
 
     // Relasi ke Order (satu user bisa memiliki banyak pesanan)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @EqualsAndHashCode.Exclude // Mencegah infinite recursion
+    @ToString.Exclude
     private List<Order> orders;
 }

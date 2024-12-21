@@ -123,7 +123,7 @@
                                         <th>SubTotal</th>
                                     </tr>
                                     </thead>
-                                    <tbody id="cartItemsTable">
+                                    <tbody id="paymentItemsTable">
                                     <!-- Data akan dimasukkan secara dinamis -->
                                     </tbody>
                                 </table>
@@ -156,7 +156,7 @@
                             <button style="background-color: #0b4575; border: none; border-radius: 8px"
                                     data-bs-toggle="modal" data-bs-target="#cartModal"
                                     class="btn btn-cart"
-                                    th:attr="data-user-id=${order.userId}">
+                                    th:attr="data-order-id=${order.getId()}">
                                 <img src="img/cart-order.svg" />
                             </button>
                         </td>
@@ -166,10 +166,10 @@
                             <select class="form-select status-dropdown"
                                     th:data-order-id="${order.getId()}"
                                     th:value="${order.getPaymentStatus()}">
-                                <option value="paid" th:attr="style=${order.getPaymentStatus() == 'paid' ? 'selected' : ''}">
+                                <option value="paid" th:selected="${order.paymentStatus == 'paid'}">
                                     Paid
                                 </option>
-                                <option value="on process" th:attr="style=${order.getPaymentStatus() == 'on process' ? 'selected' : ''}">
+                                <option value="on process" th:selected="${order.paymentStatus == 'on process'}">
                                     On Process
                                 </option>
                             </select>

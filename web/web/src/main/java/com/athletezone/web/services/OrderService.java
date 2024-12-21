@@ -11,6 +11,10 @@ import java.util.List;
 @Transactional
 public interface OrderService {
     public List<OrderDTO> getAllOrders();
+
     public List<Order> getOrdersByUserId(Long userId);
+
     public void updateOrderStatus(Long orderId, String newStatus);
+
+    public Order saveOrder(Order order);
 }

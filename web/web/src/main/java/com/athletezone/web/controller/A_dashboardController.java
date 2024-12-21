@@ -2,13 +2,11 @@ package com.athletezone.web.controller;
 
 import com.athletezone.web.dto.CartItemDTO;
 import com.athletezone.web.dto.OrderDTO;
+import com.athletezone.web.dto.PaymentItemDTO;
 import com.athletezone.web.models.Cart;
-import com.athletezone.web.models.CartItem;
+import com.athletezone.web.models.Payment;
 import com.athletezone.web.models.Product;
-import com.athletezone.web.services.CartService;
-import com.athletezone.web.services.OrderService;
-import com.athletezone.web.services.ProductService;
-import com.athletezone.web.services.UserService;
+import com.athletezone.web.services.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +14,6 @@ import org.springframework.ui.Model;
 import com.athletezone.web.dto.ProductDTO;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -26,12 +23,14 @@ public class A_dashboardController {
     private final OrderService orderService;
     private final UserService userService;
     private final CartService cartService;
+    private final PaymentService paymentService;
 
-    public A_dashboardController(ProductService productService, OrderService orderService, UserService userService, CartService cartService) {
+    public A_dashboardController(ProductService productService, OrderService orderService, UserService userService, CartService cartService, PaymentService paymentService) {
         this.productService = productService;
         this.orderService = orderService;
         this.userService = userService;
         this.cartService = cartService;
+        this.paymentService = paymentService;
     }
 
     @GetMapping("/A_dashboard")
@@ -51,15 +50,15 @@ public class A_dashboardController {
     }
 
     //Controller untuk Halaman Order
-    @GetMapping("/A_dashboard/{userId}/cartItems")
+    @GetMapping("/A_dashboard/{orderId}/paymentItems")
     @ResponseBody
-    public List<CartItemDTO> getCartItems(@PathVariable Long userId) {
-        Cart cart = cartService.getCartByUserId(userId);
-        return cart.getCartItems().stream()
-                .map(item -> new CartItemDTO(
-                        item.getProduct().getName(),
+    public List<PaymentItemDTO> getPaymentItems(@PathVariable Long orderId) {
+        Payment payment = paymentService.getPaymentByOrderId(orderId);
+        return payment.getPaymentItems().stream()
+                .map(item -> new PaymentItemDTO(
+                        item.getProductName(),
                         item.getQuantity(),
-                        item.getProduct().getPrice(),
+                        item.getPrice(),
                         item.getSubTotal()
                 ))
                 .toList();

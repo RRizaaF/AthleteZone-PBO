@@ -30,22 +30,6 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findByUserId(userId);
     }
 
-    private OrderDTO orderToDTO(Order order) {
-        return OrderDTO.builder()
-                .id(order.getId())
-                .userId(order.getUser().getId())
-                .username(order.getUser().getUsername()) // Ambil username dari user
-                .createdOn(order.getCreatedOn().toString()) // Tanggal order
-                .cartSummary(order.getCart().getCartItems().stream() // Ringkasan cart
-                        .map(item -> item.getProduct().getName() + " x " + item.getQuantity())
-                        .collect(Collectors.joining(", ")))
-                .totalAmount(order.getCart().getTotalPrice()) // Total harga
-                .paymentMethod(order.getPayment().getMethod()) // Metode pembayaran
-                .paymentStatus(order.getPayment().getStatus()) // Status pembayaran
-                .address(order.getPayment().getAddress()) // Alamat pembayaran
-                .build();
-    }
-
     @Override
     @Transactional
     public void updateOrderStatus(Long orderId, String newStatus) {
@@ -56,5 +40,26 @@ public class OrderServiceImpl implements OrderService {
         if (payment != null) {
             payment.setStatus(newStatus);
         }
+    }
+
+    @Override
+    public Order saveOrder(Order order) {
+        return orderRepository.save(order);
+    }
+
+    private OrderDTO orderToDTO(Order order) {
+        return OrderDTO.builder()
+                .id(order.getId())
+                .userId(order.getUser().getId())
+                .username(order.getUser().getUsername()) // Ambil username dari user
+                .createdOn(order.getPayment().getCreatedOn().toString()) // Tanggal order
+                .cartSummary(order.getPayment().getPaymentItems().stream() // Ringkasan cart
+                        .map(item -> item.getProductName() + " x " + item.getQuantity())
+                        .collect(Collectors.joining(", ")))
+                .totalAmount(order.getPayment().getTotalAmount()) // Total harga
+                .paymentMethod(order.getPayment().getPaymentMethod()) // Metode pembayaran
+                .paymentStatus(order.getPayment().getStatus()) // Status pembayaran
+                .address(order.getPayment().getAddress()) // Alamat pembayaran
+                .build();
     }
 }
