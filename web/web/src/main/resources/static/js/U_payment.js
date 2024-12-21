@@ -62,3 +62,18 @@ $(document).ready(function () {
 // Call the function when the page is loaded
     window.onload = calculateDutiesAndTotal;
 });
+
+// Event listener untuk Mastercard
+$("#mastercardOption").on("click", function () {
+    $("#paymentMethod").val("mastercard");
+});
+
+// Event listener untuk Transfer
+$("#transferOption").on("click", function () {
+    $("#paymentMethod").val("transfer");
+});
+
+// Event listener untuk Dana
+$("#danaOption").on("click", function () {
+    $("#paymentMethod").val("dana");
+});
